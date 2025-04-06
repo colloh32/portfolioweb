@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutisya Collins | IT Specialist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== Color Variables ===== */
+        :root {
+            /* Light Mode Colors */
+            --light-primary: #3498db;
+            --light-primary-dark: #2980b9;
+            --light-dark: #2c3e50;
+            --light-light: #ecf0f1;
+            --light-accent: #e74c3c;
+            --light-text: #333;
+            --light-text-light: #7f8c8d;
+            
+            /* Dark Mode Colors */
+            --dark-primary: #3a86ff;
+            --dark-primary-dark: #2667cc;
+            --dark-dark: #121212;
+            --dark-light: #1e1e1e;
+            --dark-accent: #ff6b6b;
+            --dark-text: #f8f9fa;
+            --dark-text-light: #adb5bd;
+        }
+
+        /* ===== Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--light-light);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-dark);
+            color: var(--dark-text);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .highlight {
+            color: var(--light-primary);
+        }
+
+        body.dark-mode .highlight {
+            color: var(--dark-primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--light-primary);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .btn {
+            background: var(--dark-primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== Header/Navigation ===== */
+        header {
+            background: var(--light-dark);
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        body.dark-mode header {
+            background: var(--dark-light);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--light-primary);
+        }
+
+        body.dark-mode .logo span {
+            color: var(--dark-primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--light-primary);
+        }
+
+        body.dark-mode nav ul li a:hover {
+            color: var(--dark-primary);
+        }
+
+        /* ===== Dark/Light Mode Toggle ===== */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 20px;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('hero-bg.jpg');
+            background-size: cover;
+            color: white;
+            padding-top: 80px;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('hero-bg.jpg');
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+        }
+
+        /* Profile Container with Slide Effect */
+        .profile-container {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--light-primary);
+            box-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
+            position: relative;
+            transition: transform 0.5s ease-out;
+            flex-shrink: 0;
+        }
+
+        body.dark-mode .profile-container {
+            border-color: var(--dark-primary);
+            box-shadow: 0 0 30px rgba(58, 134, 255, 0.5);
+        }
+
+        .profile-container:hover {
+            transform: translateX(-20px);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .profile-container:hover .profile-img {
+            transform: scale(1.05);
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--light-primary);
+        }
+
+        body.dark-mode .hero h1 span {
+            color: var(--dark-primary);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .intro-text {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        body.dark-mode .intro-text {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .intro-text p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* ===== Services Section ===== */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+
+        body.dark-mode .services {
+            background: var(--dark-light);
+        }
+
+        .services h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .services h2 span {
+            color: var(--light-primary);
+        }
+
+        body.dark-mode .services h2 span {
+            color: var(--dark-primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--light-light);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .service-card {
+            background: var(--dark-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .service-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--light-primary);
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .service-card i {
+            color: var(--dark-primary);
+        }
+
+        .service-card:hover i {
+            color: var(--light-accent);
+            transform: rotate(15deg);
+        }
+
+        body.dark-mode .service-card:hover i {
+            color: var(--dark-accent);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .short-desc {
+            margin-bottom: 15px;
+        }
+
+        .full-desc {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            text-align: left;
+            padding-left: 20px;
+            border-left: 2px dashed var(--light-primary);
+        }
+
+        body.dark-mode .full-desc {
+            border-left-color: var(--dark-primary);
+        }
+
+        .service-card.active .full-desc {
+            max-height: 500px;
+            margin-top: 20px;
+        }
+
+        /* ===== Contact Section ===== */
+        .contact {
+            padding: 80px 0;
+            background: var(--light-light);
+        }
+
+        body.dark-mode .contact {
+            background: var(--dark-dark);
+        }
+
+        .contact h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .contact h2 span {
+            color: var(--light-primary);
+        }
+
+        body.dark-mode .contact h2 span {
+            color: var(--dark-primary);
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--light-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        body.dark-mode .contact-link {
+            color: var(--dark-primary);
+            background: rgba(58, 134, 255, 0.1);
+        }
+
+        .contact-link:hover {
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        body.dark-mode .contact-link:hover {
+            background: rgba(58, 134, 255, 0.2);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: var(--light-dark);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        body.dark-mode footer {
+            background: var(--dark-light);
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-container {
+                margin-bottom: 40px;
+            }
+            
+            .profile-container:hover {
+                transform: translateX(0) translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav .container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .profile-container {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><span>Mutisya</span>Collins</div>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-container">
+                    <img src="profile.jpg" alt="Profile Picture">
+                </div>
+                <div class="intro-content">
+                    <h1>Hi, I'm <span>Mutisya Collins</span></h1>
+                    <p>IT Technician & Internet Expert</p>
+                    
+                    <div class="intro-text">
+                        <p>I specialize in delivering reliable and scalable technology services to businesses of all sizes.</p>
+                        <p>My expertise includes enterprise network design, cybersecurity implementation, and high-performance Wi-Fi solutions tailored to your specific needs.</p>
+                    </div>
+                    
+                    <a href="#contact" class="btn">Hire Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>My <span>Services</span></h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Network Setup</h3>
+                    <div class="short-desc">Secure and scalable network infrastructure for businesses.</div>
+                    <div class="full-desc">
+                        <ul>
+                            <li>Custom network architecture design</li>
+                            <li>Enterprise-grade hardware configuration</li>
+                            <li>VLAN and VPN setup</li>
+                            <li>Bandwidth optimization</li>
+                            <li>24/7 network monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-wifi"></i>
+                    <h3>Wi-Fi Solutions</h3>
+                    <div class="short-desc">High-speed, reliable wireless networks with full coverage.</div>
+                    <div class="full-desc">
+                        <ul>
+                            <li>Site surveys and heat mapping</li>
+                            <li>Enterprise Wi-Fi deployment</li>
+                            <li>Mesh network configuration</li>
+                            <li>Security hardening</li>
+                            <li>Performance tuning</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Cybersecurity</h3>
+                    <div class="short-desc">Protection against threats and data breaches.</div>
+                    <div class="full-desc">
+                        <ul>
+                            <li>Vulnerability assessments</li>
+                            <li>Firewall configuration</li>
+                            <li>Endpoint protection</li>
+                            <li>Security awareness training</li>
+                            <li>Incident response planning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact <span>Me</span></h2>
+            <div class="contact-links">
+                <a href="tel:+254112039504" class="contact-link">
+                    <i class="fas fa-phone"></i> +254 112 039 504
+                </a>
+                <a href="mailto:Mutisyacollins56@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> Mutisyacollins56@gmail.com
+                </a>
+                <a href="https://facebook.com/thee.colloh" class="contact-link" target="_blank">
+                    <i class="fab fa-facebook"></i> thee.colloh
+                </a>
+                <a href="https://instagram.com/c.ollo.hh" class="contact-link" target="_blank">
+                    <i class="fab fa-instagram"></i> c.ollo.hh
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Mutisya Collins. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // Check for saved user preference
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            
+            // Save preference
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            
+            // Update icon
+            if (isDarkMode) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+
+        // Expandable Service Cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        serviceCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Close other open cards first
+                serviceCards.forEach(otherCard => {
+                    if (otherCard !== this) {
+                        otherCard.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current card
+                this.classList.toggle('active');
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
